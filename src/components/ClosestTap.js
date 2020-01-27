@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Card, Modal, Button } from "react-bootstrap";
+import AddTapModal from './AddTapModal'
 
 export class ClosestTap extends Component {
   constructor(props) {
@@ -50,6 +51,7 @@ export class ClosestTap extends Component {
   handleClose() {
     this.setState({ show: false });
   }
+
   handleShow() {
     this.setState({ show: true });
   }
@@ -71,20 +73,8 @@ export class ClosestTap extends Component {
             ></img>
           </Card.Header>
         </Card>
-        <Modal show={this.state.show} onHide={this.handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={this.handleClose}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={this.handleClose}>
-              Save Changes
-            </Button>
-          </Modal.Footer>
-        </Modal>
+        <AddTapModal show={this.state.show} hide={this.handleClose}/>
+        
       </div>
     );
   }
