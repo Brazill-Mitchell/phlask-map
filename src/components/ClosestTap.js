@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Modal, Button } from "react-bootstrap";
+import { Card} from "react-bootstrap";
 import AddTapModal from './AddTapModal'
 
 export class ClosestTap extends Component {
@@ -8,7 +8,8 @@ export class ClosestTap extends Component {
 
     this.state = {
       text: <p style={{ display: "inline-block" }}>Click for nearest tap!</p>,
-      show: false
+      show: false,
+      tapOpen: false
     };
 
     this.change = this.change.bind(this);
@@ -26,26 +27,36 @@ export class ClosestTap extends Component {
           </p>
         )
       });
-    } else {
-      this.setState({
-        text: (
-          <p style={{ display: "inline-block" }}>
-            The closest tap is: {this.props.org} <br />
-            Located at: &nbsp;
-            <a
-              href={
-                "https://www.google.com/maps/search/?api=1&query=" +
-                this.props.lat +
-                ", " +
-                this.props.lon
-              }
-            >
-              {this.props.address}
-            </a>
-          </p>
-        )
-      });
+    }else{
+      if(this.state.tapOpen === true){
+        this.setState({
+          tapOpen: false,
+          text: <p style={{ display: "inline-block" }}>Click for nearest tap!</p>,
+        });
+      }
+      else {
+        this.setState({
+          tapOpen: true,
+          text: (
+            <p style={{ display: "inline-block" }}>
+              The closest tap is: {this.props.org} <br />
+              Located at: &nbsp;
+              <a
+                href={
+                  "https://www.google.com/maps/search/?api=1&query=" +
+                  this.props.lat +
+                  ", " +
+                  this.props.lon
+                }
+              >
+                {this.props.address}
+              </a>
+            </p>
+          )
+        });
+      }
     }
+      
   }
 
   handleClose() {
@@ -66,6 +77,7 @@ export class ClosestTap extends Component {
           >
             {this.state.text}
             <img
+              alt="addTapButton"
               onClick={this.handleShow}
               title="Add a new tap"
               className="add-tap"

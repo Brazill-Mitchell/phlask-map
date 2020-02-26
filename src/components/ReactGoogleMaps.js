@@ -243,7 +243,7 @@ export class ReactGoogleMaps extends Component {
           return "https://i.imgur.com/kKXG3TO.png";
       }
     } else {
-      return "https://i.imgur.com/kKXG3TO.png";
+      return "";
     }
   }
 
@@ -278,6 +278,7 @@ export class ReactGoogleMaps extends Component {
             center={{ lat: this.state.currlat, lng: this.state.currlon }}
           >
             <Marker
+              
               key="current_pos"
               name={"Current Pos"}
               position={{ lat: this.state.currlat, lng: this.state.currlon }}

@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 
-export class Foot extends Component {
+export class MapMarker extends Component {
   render() {
     return (
       <div>
-        <footer>foot</footer>
       </div>
     );
   }
 }
 
-export default Foot;
+export default MapMarker;

@@ -1,13 +1,14 @@
+import "./AddTapModal.css";
 import React, { Component } from "react";
 import {
   Modal,
   Button,
   Form,
   OverlayTrigger,
-  Tooltip,
   Popover
 } from "react-bootstrap";
 import ImageUploader from 'react-images-upload';
+
 
 export class AddTapModal extends Component {
   constructor(props) {
@@ -19,9 +20,7 @@ export class AddTapModal extends Component {
     this.setState({
         pictures: this.state.pictures.concat(picture),
     });
-  }
-
-  
+  }  
 
   render() {
     const popoverAccess = (
@@ -85,7 +84,8 @@ export class AddTapModal extends Component {
                   <strong>Access to Tap</strong>
                 </Form.Label>
 
-                <Form.Check
+                <Form.Check 
+                  class = "radioText"
                   type="radio"
                   label="Public"
                   name="AccessRadios"
@@ -93,6 +93,7 @@ export class AddTapModal extends Component {
                 />
 
                 <Form.Check
+                  class = "radioText"
                   type="radio"
                   label="Private"
                   name="AccessRadios"
@@ -114,6 +115,7 @@ export class AddTapModal extends Component {
               </Form.Label>
 
               <Form.Check
+                class = "radioText"
                 type="radio"
                 label="Yes"
                 name="FilterRadios"
@@ -121,6 +123,7 @@ export class AddTapModal extends Component {
               />
 
               <Form.Check
+                class = "radioText"
                 type="radio"
                 label="No"
                 name="FilterRadios"
@@ -134,6 +137,7 @@ export class AddTapModal extends Component {
               </Form.Label>
 
               <Form.Check
+                class = "radioText"
                 type="radio"
                 label="Yes"
                 name="HandicapRadios"
@@ -141,6 +145,7 @@ export class AddTapModal extends Component {
               />
 
               <Form.Check
+                class = "radioText"
                 type="radio"
                 label="No"
                 name="HandicapRadios"
@@ -154,6 +159,7 @@ export class AddTapModal extends Component {
               </Form.Label>
 
               <Form.Check
+                class = "radioText"
                 type="radio"
                 label="Self-serve"
                 name="ServiceRadios"
@@ -161,6 +167,7 @@ export class AddTapModal extends Component {
               />
 
               <Form.Check
+                class = "radioText"
                 type="radio"
                 label="Ask proprietor"
                 name="ServiceRadios"
@@ -174,6 +181,7 @@ export class AddTapModal extends Component {
               </Form.Label>
 
               <Form.Check
+                class = "radioText"
                 type="radio"
                 label="Drinking Foutain"
                 name="TypeRadios"
@@ -181,6 +189,7 @@ export class AddTapModal extends Component {
               />
 
               <Form.Check
+                class = "radioText"
                 type="radio"
                 label="Bottle filler and fountain"
                 name="TypeRadios"
@@ -188,6 +197,7 @@ export class AddTapModal extends Component {
               />
 
               <Form.Check
+                class = "radioText"
                 type="radio"
                 label="Sink"
                 name="TypeRadios"
@@ -195,6 +205,7 @@ export class AddTapModal extends Component {
               />
 
               <Form.Check
+                class = "radioText"
                 type="radio"
                 label="Soda fountain"
                 name="TypeRadios"
@@ -202,6 +213,7 @@ export class AddTapModal extends Component {
               />
 
               <Form.Check
+                class = "radioText"
                 type="radio"
                 label="Dedicated water dispenser"
                 name="TypeRadios"
@@ -209,6 +221,7 @@ export class AddTapModal extends Component {
               />
 
               <Form.Check
+                class = "radioText"
                 type="radio"
                 label="Water cooler"
                 name="TypeRadios"
@@ -216,6 +229,7 @@ export class AddTapModal extends Component {
               />
 
               <Form.Check
+                class = "radioText"
                 type="radio"
                 label="Other"
                 name="TypeRadios"
@@ -229,6 +243,7 @@ export class AddTapModal extends Component {
               </Form.Label>
 
               <Form.Check
+                class = "radioText"
                 type="radio"
                 label="Yes"
                 name="VesselRadios"
@@ -236,6 +251,7 @@ export class AddTapModal extends Component {
               />
 
               <Form.Check
+                class = "radioText"
                 type="radio"
                 label="No"
                 name="VesselRadios"
