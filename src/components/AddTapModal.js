@@ -13,7 +13,62 @@ import ImageUploader from 'react-images-upload';
 export class AddTapModal extends Component {
   constructor(props) {
     super(props);
-    this.state = { pictures: [] };
+    this.onDrop = this.onDrop.bind(this);
+    this.onChangeAddress = this.onChangeAddress.bind(
+      this
+    );
+    this.onChangeCity = this.onChangeCity.bind(
+      this
+    );
+    this.onChangeDescription = this.onChangeDescription.bind(
+      this
+    );
+    this.onChangeAccessToTap = this.onChangeAccessToTap.bind(
+      this
+    );
+    this.onChangeOrganization = this.onChangeOrganization.bind(
+      this
+    );
+    this.onChangeFiltration = this.onChangeFiltration.bind(
+      this
+    );
+    this.onChangeHandicapAccess = this.onChangeHandicapAccess.bind(
+      this
+    );
+    this.onChangeTapServiceType = this.onChangeTapServiceType.bind(
+      this
+    );
+    this.onChangeTapType = this.onChangeTapType.bind(
+      this
+    );
+    this.onChangeWaterVessleNeeded = this.onChangeWaterVessleNeeded.bind(
+      this
+    );
+    this.onChangePhlaskStatement = this.onChangePhlaskStatement.bind(
+      this
+    );
+    this.onChangeNormsAndRules = this.onChangeNormsAndRules.bind(
+      this
+    );
+    this.onSubmit = this.onSubmit.bind(this);
+
+
+    this.state = {   
+      pictures: [],
+      image: "",
+      address: "",
+      city: "",
+      description: "",
+      accessToTap: "",
+      organization: "",
+      filtration: "",
+      handicapAccessable: "",
+      tapServiceType: "",
+      tapType: "",
+      waterVessleNeeded: "",
+      phlaskStatement: "",
+      normsAndRules: "",
+      };
   }
 
   onDrop(picture) {
@@ -21,6 +76,101 @@ export class AddTapModal extends Component {
         pictures: this.state.pictures.concat(picture),
     });
   }  
+
+  onChangeAddress(e) {
+    this.setState({
+      address: e.target.value
+    });
+  }
+
+  onChangeCity(e) {
+    this.setState({
+      city: e.target.value
+    });
+  }
+
+  onChangeDescription(e) {
+    this.setState({
+      description: e.target.value
+    });
+  }
+
+  onChangeAccessToTap(e) {
+    this.setState({
+      accessToTap: e.target.value
+    });
+  }
+
+  onChangeOrganization(e) {
+    this.setState({
+      organization: e.target.value
+    });
+  }
+
+  onChangeFiltration(e) {
+    this.setState({
+      filtration: e.target.value
+    });
+  }
+
+  onChangeHandicapAccess(e) {
+    this.setState({
+      handicapAccessable: e.target.value
+    });
+  }
+
+  onChangeTapServiceType(e) {
+    this.setState({
+      tapServiceType: e.target.value
+    });
+  }
+
+  onChangeTapType(e) {
+    this.setState({
+      tapType: e.target.value
+    });
+  }
+
+  onChangeWaterVessleNeeded(e) {
+    this.setState({
+      waterVessleNeeded: e.target.value
+    });
+  }
+
+  onChangePhlaskStatement(e) {
+    this.setState({
+      phlaskStatement: e.target.value
+    });
+  }
+
+  onChangeNormsAndRules(e) {
+    this.setState({
+      normsAndRules: e.target.value
+    });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    const newTap= {
+      images: this.state.pictures,
+      address: this.state.address,
+      city: this.state.city,
+      description: this.state.description,
+      accessToTap: this.state.accessToTap,
+      organization: this.state.organization,
+      filtration: this.state.filtration,
+      handicapAccessable: this.state.handicapAccessable,
+      tapServiceType: this.state.tapServiceType,
+      tapType: this.state.tapType,
+      waterVessleNeeded: this.state.waterVessleNeeded,
+      phlaskStatement: this.state.phlaskStatement,
+      normsAndRules: this.state.normsAndRules,
+    };
+
+    console.log(newTap);
+
+  }
 
   render() {
     const popoverAccess = (
@@ -50,21 +200,35 @@ export class AddTapModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title>Submit a Tap!</Modal.Title>
         </Modal.Header>
-        <Form>
+        <Form onSubmit={this.onSubmit}>
           <Modal.Body>
-            <Form.Group controlId="Address">
+            <Form.Group 
+              controlId="Address"
+              id="time"
+              label="End Time"
+              type="time"
+              defaultValue="07:30"
+              value={this.state.address}
+              onChange={this.onChangeAddress}
+            >
               <Form.Label>
                 <strong>Address</strong>
               </Form.Label>
               <Form.Control />
-            </Form.Group>
-            <Form.Group controlId="City">
+            </Form.Group 
+            >
+            <Form.Group controlId="City"
+              value={this.state.city}
+              onChange={this.onChangeCity}>
               <Form.Label>
                 <strong>City</strong>
               </Form.Label>
               <Form.Control />
             </Form.Group>
-            <Form.Group controlId="Description">
+            <Form.Group controlId="Description"
+            value={this.state.description}
+            onChange={this.onChangeDescription}
+            >
               <Form.Label>
                 <strong>Description</strong>
               </Form.Label>
@@ -79,7 +243,10 @@ export class AddTapModal extends Component {
               placement="right"
               overlay={popoverAccess}
             >
-              <Form.Group>
+              <Form.Group
+                value={this.state.accessToTap}
+                onChange={this.onChangeAccessToTap}
+                >
                 <Form.Label as="legend">
                   <strong>Access to Tap</strong>
                 </Form.Label>
@@ -90,6 +257,7 @@ export class AddTapModal extends Component {
                   label="Public"
                   name="AccessRadios"
                   id="AccessRadio1"
+                  value = "public"
                 />
 
                 <Form.Check
@@ -98,18 +266,25 @@ export class AddTapModal extends Component {
                   label="Private"
                   name="AccessRadios"
                   id="AccessRadio2"
+                  value = "private"
                 />
               </Form.Group>
             </OverlayTrigger>
             <h5>Additional Information</h5>
-            <Form.Group controlId="Organization">
+            <Form.Group controlId="Organization"
+              value={this.state.organization}
+              onChange={this.onChangeOrganization}
+            >
               <Form.Label>
                 <strong>Organization</strong>
               </Form.Label>
               <Form.Control placeholder="What organization/company does this tap belong to?" />
             </Form.Group>
 
-            <Form.Group>
+            <Form.Group
+              value={this.state.filtration}
+              onChange={this.onChangeFiltration}
+              >
               <Form.Label as="legend">
                 <strong>Filtration</strong>
               </Form.Label>
@@ -120,6 +295,7 @@ export class AddTapModal extends Component {
                 label="Yes"
                 name="FilterRadios"
                 id="FilterRadios1"
+                value = "yes"
               />
 
               <Form.Check
@@ -128,10 +304,13 @@ export class AddTapModal extends Component {
                 label="No"
                 name="FilterRadios"
                 id="FilterRadios2"
+                value = "no"
               />
             </Form.Group>
 
-            <Form.Group>
+            <Form.Group
+              value={this.state.handicapAccessable}
+              onChange={this.onChangeHandicapAccess}>
               <Form.Label as="legend">
                 <strong>Handicap Accessible</strong>
               </Form.Label>
@@ -142,6 +321,7 @@ export class AddTapModal extends Component {
                 label="Yes"
                 name="HandicapRadios"
                 id="HandicapRadios1"
+                value = "yes"
               />
 
               <Form.Check
@@ -150,10 +330,14 @@ export class AddTapModal extends Component {
                 label="No"
                 name="HandicapRadios"
                 id="HandicapRadios2"
+                value = "no"
               />
             </Form.Group>
 
-            <Form.Group>
+            <Form.Group
+              value={this.state.tapServiceType}
+              onChange={this.onChangeTapServiceType}
+              >
               <Form.Label as="legend">
                 <strong>Tap Service Type</strong>
               </Form.Label>
@@ -164,6 +348,7 @@ export class AddTapModal extends Component {
                 label="Self-serve"
                 name="ServiceRadios"
                 id="ServiceRadios1"
+                value = "self serve"
               />
 
               <Form.Check
@@ -172,10 +357,13 @@ export class AddTapModal extends Component {
                 label="Ask proprietor"
                 name="ServiceRadios"
                 id="ServiceRadios2"
+                value = "ask proprietor"
               />
             </Form.Group>
 
-            <Form.Group>
+            <Form.Group
+              value={this.state.tapType}
+              onChange={this.onChangeTapType}>
               <Form.Label as="legend">
                 <strong>Tap Type</strong>
               </Form.Label>
@@ -186,6 +374,7 @@ export class AddTapModal extends Component {
                 label="Drinking Foutain"
                 name="TypeRadios"
                 id="TypeRadios1"
+                value = "drinking fountain"
               />
 
               <Form.Check
@@ -194,6 +383,7 @@ export class AddTapModal extends Component {
                 label="Bottle filler and fountain"
                 name="TypeRadios"
                 id="TypeRadios2"
+                value = "bottle filter and fountain"
               />
 
               <Form.Check
@@ -202,6 +392,7 @@ export class AddTapModal extends Component {
                 label="Sink"
                 name="TypeRadios"
                 id="TypeRadios3"
+                value = "sink"
               />
 
               <Form.Check
@@ -210,6 +401,7 @@ export class AddTapModal extends Component {
                 label="Soda fountain"
                 name="TypeRadios"
                 id="TypeRadios4"
+                value = "soda fountain"
               />
 
               <Form.Check
@@ -218,6 +410,7 @@ export class AddTapModal extends Component {
                 label="Dedicated water dispenser"
                 name="TypeRadios"
                 id="TypeRadios5"
+                value = "dedicated water dispenser"
               />
 
               <Form.Check
@@ -226,6 +419,7 @@ export class AddTapModal extends Component {
                 label="Water cooler"
                 name="TypeRadios"
                 id="TypeRadios6"
+                value = "water cooler"
               />
 
               <Form.Check
@@ -234,10 +428,13 @@ export class AddTapModal extends Component {
                 label="Other"
                 name="TypeRadios"
                 id="TypeRadios7"
+                value = "other"
               />
             </Form.Group>
 
-            <Form.Group>
+            <Form.Group
+              value={this.state.waterVessleNeeded}
+              onChange={this.onChangeWaterVessleNeeded}>
               <Form.Label as="legend">
                 <strong>Water Vessel Needed</strong>
               </Form.Label>
@@ -248,6 +445,7 @@ export class AddTapModal extends Component {
                 label="Yes"
                 name="VesselRadios"
                 id="VesselRadios1"
+                value = "yes"
               />
 
               <Form.Check
@@ -256,10 +454,13 @@ export class AddTapModal extends Component {
                 label="No"
                 name="VesselRadios"
                 id="VesselRadios2"
+                value = "no"
               />
             </Form.Group>
 
-            <Form.Group controlId="Phlask Statement">
+            <Form.Group controlId="Phlask Statement"
+              value={this.state.phlaskStatement}
+              onChange={this.onChangePhlaskStatement}>
               <Form.Label>
                 <strong>PHLASK Statement</strong>
               </Form.Label>
@@ -270,7 +471,10 @@ export class AddTapModal extends Component {
               />
             </Form.Group>
 
-            <Form.Group controlId="Norms and Rules">
+            <Form.Group controlId="Norms and Rules"
+              value={this.state.normsAndRules}
+              onChange={this.onChangeNormsAndRules}
+              >
               <Form.Label>
                 <strong>Norms and Rules</strong>
               </Form.Label>
@@ -289,10 +493,10 @@ export class AddTapModal extends Component {
             />
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={this.props.hide}>
+            <Button variant="secondary" onClick={this.props.hide} >
               Close
             </Button>
-            <Button variant="primary" onClick={this.props.hide}>
+            <Button variant="primary" type="submit" onClick={this.props.hide}>
               Submit
             </Button>
           </Modal.Footer>
